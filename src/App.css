@@ -1,0 +1,413 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+.letter-page {
+  min-height: 100vh;
+  background: #d6d0c4;
+  background-image: 
+    linear-gradient(#e5e0d5 1px, transparent 1px),
+    linear-gradient(90deg, #e5e0d5 1px, transparent 1px);
+  background-size: 40px 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 2rem;
+  font-family: 'Special Elite', 'Courier New', monospace;
+}
+
+.letter-container {
+  max-width: 1100px;
+  width: 100%;
+  position: relative;
+  display: flex;
+  justify-content: center;
+}
+
+.watermark {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%) rotate(-15deg);
+  opacity: 0.1;
+  z-index: 0;
+  font-size: 5rem;
+  color: #8b7e6b;
+  pointer-events: none;
+}
+
+/* PAPEL CON TAMAÑO FIJO - ANCHURA CONSTANTE */
+.letter-paper.fixed-size {
+  background: #fff9f0;
+  padding: 3rem 3rem 2rem 3rem;
+  box-shadow: 
+    0 10px 30px rgba(0, 0, 0, 0.1),
+    0 0 0 1px #8b7e6b,
+    0 0 0 2px #f0e9da,
+    0 20px 40px rgba(0, 0, 0, 0.2);
+  position: relative;
+  z-index: 1;
+  border-radius: 4px;
+  width: 1000px;
+  min-width: 1000px; /* FORZAMOS ANCHURA MÍNIMA */
+  height: 700px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Efecto de papel antiguo */
+.letter-paper.fixed-size::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: 
+    radial-gradient(circle at 30% 40%, rgba(0,0,0,0.02) 0%, transparent 30%),
+    radial-gradient(circle at 70% 60%, rgba(0,0,0,0.02) 0%, transparent 30%),
+    repeating-linear-gradient(45deg, rgba(0,0,0,0.01) 0px, rgba(0,0,0,0.01) 2px, transparent 2px, transparent 4px);
+  pointer-events: none;
+  border-radius: 4px;
+}
+
+/* Línea decorativa de máquina de escribir */
+.typewriter-line {
+  position: absolute;
+  bottom: 2rem;
+  left: 3rem;
+  right: 3rem;
+  height: 2px;
+  background: repeating-linear-gradient(
+    90deg,
+    #8b7e6b 0px,
+    #8b7e6b 10px,
+    transparent 10px,
+    transparent 20px
+  );
+}
+
+/* Estilos de la carta mecanografiada - SIN SCROLL */
+.typewriter-letter {
+  font-family: 'Special Elite', 'Courier New', 'American Typewriter', monospace;
+  font-size: 1.2rem;
+  line-height: 1.8;
+  color: #2c3e50;
+  white-space: pre-wrap;
+  word-wrap: break-word;
+  margin-bottom: 1rem;
+  width: 100%;
+  /* SIN overflow, SIN max-height, SIN scroll */
+}
+
+.letter-line {
+  margin-bottom: 1rem;
+  letter-spacing: 0.3px;
+  min-height: 1.8rem;
+  position: relative;
+  width: 100%;
+}
+
+.first-line {
+  margin-top: 2rem;
+}
+
+.letter-line::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(0,0,0,0.1), transparent);
+}
+
+/* Cursor de máquina de escribir */
+.typewriter-cursor {
+  display: inline-block;
+  width: 10px;
+  animation: typewriter-blink 1s infinite;
+  color: #2c3e50;
+  font-weight: bold;
+}
+
+@keyframes typewriter-blink {
+  0%, 50% { opacity: 1; }
+  51%, 100% { opacity: 0; }
+}
+
+/* SECCIÓN DE DECISIÓN - DENTRO DEL PAPEL */
+.decision-section {
+  margin: 1rem 0 2rem 0;
+  padding: 1rem 0;
+  border-top: 1px dashed #8b7e6b;
+  border-bottom: 1px dashed #8b7e6b;
+  width: 100%;
+}
+
+.watermark {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%) rotate(-15deg);
+  opacity: 0.1; /* Baja opacidad para que sea marca de agua */
+  z-index: 0;
+  pointer-events: none; /* Para que no interfiera con clics */
+}
+
+.watermark img {
+  width: 200px; /* Ajusta el tamaño según necesites */
+  height: auto;
+  max-width: 100%;
+}
+
+.decision-prompt {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  font-family: 'Special Elite', monospace;
+  font-size: 1.3rem;
+  width: 100%;
+}
+
+.prompt-symbol {
+  color: #8b7e6b;
+  font-weight: bold;
+  font-size: 1.5rem;
+  animation: prompt-blink 1.5s infinite;
+}
+
+@keyframes prompt-blink {
+  0%, 50% { opacity: 1; }
+  51%, 100% { opacity: 0.5; }
+}
+
+.prompt-separator {
+  color: #8b7e6b;
+  font-size: 1.5rem;
+  margin: 0 0.5rem;
+}
+
+.decision-btn {
+  background: transparent;
+  border: none;
+  font-family: 'Special Elite', monospace;
+  font-size: 1.3rem;
+  cursor: pointer;
+  padding: 0.3rem 1rem;
+  transition: all 0.2s ease;
+  position: relative;
+}
+
+.btn-si {
+  color: #000000;
+}
+
+.btn-no {
+  color: #000000;
+}
+
+.decision-btn:hover {
+  transform: translateY(-2px);
+  text-shadow: 2px 2px 4px rgba(0,0,0,0.1);
+}
+
+.decision-btn::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 0;
+  height: 2px;
+  transition: width 0.2s ease;
+}
+
+.btn-si::after {
+  background: #000000;
+}
+
+.btn-no::after {
+  background: #000000;
+}
+
+.decision-btn:hover::after {
+  width: 70%;
+}
+
+/* Cursor parpadeante para los botones */
+.cursor-blink {
+  display: inline-block;
+  animation: cursor-blink 1s infinite;
+  color: #2c3e50;
+  font-weight: bold;
+  font-size: 1.5rem;
+  margin-left: 0.5rem;
+}
+
+@keyframes cursor-blink {
+  0%, 50% { opacity: 1; }
+  51%, 100% { opacity: 0; }
+}
+
+/* Sección de respuesta */
+.response-section {
+  margin: 1rem 0 2rem 0;
+  padding: 1rem;
+  border-top: 1px dashed #8b7e6b;
+  border-bottom: 1px dashed #8b7e6b;
+  width: 100%;
+}
+
+.response-line {
+  font-family: 'Special Elite', monospace;
+  font-size: 1.3rem;
+  color: #2c3e50;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  justify-content: center;
+}
+
+/* Animación de fade in */
+.fade-in {
+  animation: fadeIn 0.8s ease-out;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Responsive - AJUSTADO PARA MANTENER ANCHURA */
+@media (max-width: 1100px) {
+  .letter-paper.fixed-size {
+    width: 950px;
+    min-width: 950px;
+  }
+}
+
+@media (max-width: 1000px) {
+  .letter-paper.fixed-size {
+    width: 900px;
+    min-width: 900px;
+  }
+}
+
+@media (max-width: 950px) {
+  .letter-paper.fixed-size {
+    width: 850px;
+    min-width: 850px;
+  }
+}
+
+@media (max-width: 900px) {
+  .letter-paper.fixed-size {
+    width: 800px;
+    min-width: 800px;
+    height: auto;
+    min-height: 650px;
+  }
+}
+
+@media (max-width: 850px) {
+  .letter-paper.fixed-size {
+    width: 750px;
+    min-width: 750px;
+  }
+}
+
+@media (max-width: 800px) {
+  .letter-paper.fixed-size {
+    width: 700px;
+    min-width: 700px;
+  }
+}
+
+@media (max-width: 750px) {
+  .letter-paper.fixed-size {
+    width: 650px;
+    min-width: 650px;
+  }
+}
+
+@media (max-width: 700px) {
+  .letter-paper.fixed-size {
+    width: 600px;
+    min-width: 600px;
+  }
+}
+
+@media (max-width: 650px) {
+  .letter-paper.fixed-size {
+    width: 550px;
+    min-width: 550px;
+    padding: 2rem 1.5rem;
+  }
+  
+  .typewriter-letter {
+    font-size: 1rem;
+    line-height: 1.6;
+  }
+}
+
+@media (max-width: 600px) {
+  .letter-paper.fixed-size {
+    width: 500px;
+    min-width: 500px;
+  }
+}
+
+@media (max-width: 550px) {
+  .letter-paper.fixed-size {
+    width: 450px;
+    min-width: 450px;
+  }
+  
+  .decision-prompt {
+    font-size: 1.1rem;
+    flex-wrap: wrap;
+  }
+  
+  .decision-btn {
+    font-size: 1.1rem;
+  }
+}
+
+@media (max-width: 500px) {
+  .letter-paper.fixed-size {
+    width: 400px;
+    min-width: 400px;
+  }
+}
+
+@media (max-width: 450px) {
+  .letter-paper.fixed-size {
+    width: 350px;
+    min-width: 350px;
+  }
+  
+  .decision-prompt {
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+  
+  .prompt-separator {
+    display: none;
+  }
+  
+  .decision-btn {
+    width: 100%;
+    text-align: center;
+  }
+}
