@@ -6,7 +6,6 @@ function App() {
   const [showButtons, setShowButtons] = useState(false);
   const [decision, setDecision] = useState(null);
 
-  // El texto de la carta que se irá cribiendo
   const letterContent = `Querida Sheyla:
 
   ¿Le aceptarías una cita más a este tonto que no supo demostrar lo que siente por ti?
