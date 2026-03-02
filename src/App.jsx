@@ -68,7 +68,7 @@ function App() {
             <div className="response-section fade-in">
               <p className="response-line">
                 <span className="prompt-symbol">&gt;</span>
-                {decision === 'si' ? ':) okey entonces nos vemos mañana martes a las 1 pm en el jardin botanico (si hay complicaciones con el dia o la hora por favor comunicarse con el tonto)' : 'segura??? :('}
+                {decision === 'si' ? ':) okey entonces te espero mañana martes a las 1 pm en la puerta del jardin botanico (si hay complicaciones con el dia o la hora por favor comunicarlo con anticipacion)' : 'segura? :('}
                 <span className="cursor-blink">_</span>
               </p>
             </div>
